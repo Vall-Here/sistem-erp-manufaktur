@@ -1,0 +1,73 @@
+\chapter{Modul Aset (Assets)}
+
+Modul Aset (\textit{Fixed Assets}) mengelola siklus hidup aset tetap perusahaan, mulai dari pembelian, penghitungan penyusutan (depresiasi) setiap bulan, pemeliharaan (maintenance), hingga pembuangan/penjualan aset (\textit{disposal}).
+
+\section{Konsep Dasar \& Matriks Peran}
+Setiap benda bernilai tinggi (seperti Mesin Pabrik, Truk, Komputer) wajib dicatat sebagai aset agar nilai kekayaan perusahaan terpantau.
+
+\textbf{Pihak yang Terlibat (Role Matrix):}
+\begin{itemize}
+    \item \textbf{Finance/Accounting Staff}: Mencatat aset baru, menghitung nilai buku, dan memposting jurnal penyusutan bulanan.
+    \item \textbf{Maintenance/Engineering Staff}: Mengatur jadwal servis (maintenance) atas mesin-mesin tersebut agar tidak rusak tiba-tiba.
+\end{itemize}
+
+\section{Skenario Dunia Nyata \& Alur Kerja}
+\begin{enumerate}
+    \item \textbf{Fase 1 (Akuisisi):} Pabrik membeli Mesin Bor seharga Rp 120 Juta. Staf mencatat aset ini dengan status \textit{Draft}, lalu mengaktifkannya (\textbf{Activate}).
+    \item \textbf{Fase 2 (Depresiasi):} Setiap akhir bulan, staf Akunting menekan tombol \textbf{Post Depreciation} untuk mencatat penyusutan mesin (misal menyusut 2 juta per bulan). Nilai Buku (*Book Value*) aset akan perlahan turun di sistem.
+    \item \textbf{Fase 3 (Perawatan):} Staf teknik menekan \textbf{Schedule Maintenance} untuk menjadwalkan ganti oli Mesin Bor minggu depan.
+    \item \textbf{Fase 4 (Pembuangan):} 5 tahun kemudian, Mesin Bor sudah tua dan dijual rongsokan. Staf menekan \textbf{Dispose} untuk mengeluarkan mesin dari daftar aset aktif.
+\end{enumerate}
+
+\section{Panduan Penggunaan (Step-by-Step)}
+
+\subsection{1. Mencatat Aset Baru}
+\begin{enumerate}
+    \item Buka menu \textbf{Fixed Assets}.
+    \item Klik \textbf{New Fixed Asset}.
+    \item Pada formulir \textbf{Informasi Aset}, isikan:
+    \begin{itemize}
+        \item \textbf{Kode Aset:} Biarkan kosong agar digenerate otomatis.
+        \item \textbf{Nama Aset:} Contoh: "Truk Canter 2026".
+        \item \textbf{Kategori Aset:} Pilih "Kendaraan" (Pastikan \textit{Asset Category} sudah dibuat sebelumnya).
+        \item \textbf{Tanggal Perolehan:} Kapan aset dibeli.
+        \item \textbf{Nilai Perolehan (Acquisition Cost):} Harga beli (Misal: 300000000).
+        \item \textbf{Nilai Residu:} Harga perkiraan sisa saat aset sudah usang.
+        \item \textbf{Umur Manfaat (Bulan):} Misal 60 bulan (5 tahun).
+        \item \textbf{Metode Depresiasi:} Biasanya menggunakan \textit{Straight Line} (Garis Lurus).
+    \end{itemize}
+    \item Klik \textbf{Create}. Status aset saat ini adalah \textit{Draft}.
+\end{enumerate}
+
+\subsection{2. Mengaktifkan Aset}
+Aset yang berstatus \textit{Draft} belum akan disusutkan nilainya oleh sistem.
+\begin{enumerate}
+    \item Buka aset yang baru dibuat.
+    \item Klik tombol hijau \textbf{Activate} (Ikon *Play*).
+    \item Konfirmasi persetujuan. Statusnya kini berubah menjadi \textit{Active}.
+\end{enumerate}
+
+\subsection{3. Menghitung Penyusutan Bulanan (Post Depreciation)}
+Ini dilakukan rutin setiap bulan oleh tim Keuangan/Akunting.
+\begin{enumerate}
+    \item Buka daftar \textbf{Fixed Assets}.
+    \item Pada aset berstatus *Active*, klik tombol kuning \textbf{Post Depreciation} (Ikon Kalkulator).
+    \item Pilih \textbf{Periode Bulan} dan \textbf{Periode Tahun} yang ingin disusutkan (Contoh: Bulan 08 Tahun 2026).
+    \item Klik Submit. Sistem akan membuat Jurnal Depresiasi otomatis, menambah angka \textit{Akumulasi Depresiasi}, dan mengurangi \textit{Nilai Buku}.
+\end{enumerate}
+
+\subsection{4. Menjadwalkan Perawatan (Schedule Maintenance)}
+\begin{enumerate}
+    \item Klik tombol biru \textbf{Schedule Maintenance} (Ikon Obeng) pada aset yang ingin diservis.
+    \item Pilih \textbf{Tanggal Jadwal}.
+    \item Pilih \textbf{Tipe} (\textit{Preventive/Corrective/Inspection}).
+    \item Isi \textbf{Deskripsi} (Misal: "Ganti Oli Rutin").
+    \item Klik Submit.
+\end{enumerate}
+
+\subsection{5. Membuang atau Menjual Aset (Dispose)}
+\begin{enumerate}
+    \item Jika aset sudah rusak total atau dijual, klik tombol merah \textbf{Dispose} (Ikon Tong Sampah).
+    \item Masukkan \textbf{Catatan Disposal} (Alasan pembuangan).
+    \item Klik Submit. Aset berubah status menjadi \textit{Disposed} dan tidak bisa diubah lagi selamanya.
+\end{enumerate}

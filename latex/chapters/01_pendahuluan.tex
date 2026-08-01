@@ -1,0 +1,66 @@
+\chapter{Pendahuluan \& Arsitektur Sistem}
+
+Selamat datang di Buku Panduan Pengguna (User Manual) untuk \textbf{Sistem Enterprise Resource Planning (ERP) Manufacture Admin}. Sistem ini adalah perangkat lunak terpadu tingkat \textit{enterprise} yang dirancang khusus untuk memusatkan seluruh kegiatan operasional pabrik manufaktur Anda ke dalam satu pintu digital.
+
+\section{Konsep Dasar Sistem}
+Sistem ERP ini tidak hanya sekadar tempat mencatat data, melainkan adalah penggerak roda bisnis. Seluruh divisi dalam pabrik—mulai dari Tim Penjualan (\textit{Sales}), Gudang (\textit{Inventory}), Pembelian (\textit{Procurement}), Pabrikasi (\textit{Production}), Keuangan (\textit{Finance}), hingga SDM (\textit{HR})—akan bekerja secara kolaboratif dalam sistem yang sama.
+
+Konsep utama dari sistem ini adalah \textbf{Data Terpusat dan Transparan}. Ketika seorang Sales mencatat pesanan, Gudang secara otomatis melihat pesanan tersebut untuk disiapkan, dan Keuangan langsung dapat menagihnya. Tidak ada lagi data yang tumpang tindih atau laporan yang tidak sinkron antar departemen.
+
+\section{Matriks Peran (Role-Based Access Control)}
+Untuk memastikan keamanan dan privasi tingkat perusahaan (\textit{enterprise security}), sistem ini menggunakan mekanisme \textit{Role-Based Access Control} (RBAC). Ini berarti apa yang dapat Anda lihat dan lakukan bergantung sepenuhnya pada jabatan (\textit{Role}) Anda di perusahaan.
+
+Berikut adalah gambaran umum peran yang ada di dalam sistem:
+\begin{itemize}
+    \item \textbf{Super Admin / IT Manager}: Memiliki kendali penuh (\textit{God Mode}) atas semua fitur, pengaktifan pengguna, pengaturan sistem, dan *database*.
+    \item \textbf{Department Manager (Manajer Divisi)}: Memiliki hak untuk menyetujui (\textit{approve}) dokumen, melihat laporan analitik komprehensif, dan memantau kinerja staf di divisinya (misal: \textit{Sales Manager}, \textit{Warehouse Manager}).
+    \item \textbf{Staff / Operator}: Memiliki akses terbatas hanya untuk melakukan input transaksi harian sesuai bidang pekerjaannya (misal: \textit{Warehouse Staff} hanya bisa melihat mutasi barang, tidak bisa melihat laporan keuangan).
+\end{itemize}
+
+\section{Memulai Penggunaan (Login)}
+Berikut adalah langkah-langkah dasar untuk masuk ke dalam sistem:
+
+\begin{enumerate}
+    \item Buka aplikasi peramban (seperti Google Chrome atau Microsoft Edge).
+    \item Ketikkan alamat sistem ERP di kolom pencarian atas (contoh: \texttt{http://erp.pabrikanda.com}).
+    \item Anda akan melihat halaman \textbf{Login}. Masukkan kredensial berikut:
+    \begin{itemize}
+        \item \textbf{Company Code:} Masukkan kode unik perusahaan Anda (contoh: \texttt{MFGDEMO}). Sistem ini mendukung multi-perusahaan, sehingga kode ini wajib diisi dengan benar.
+        \item \textbf{Email Address:} Masukkan alamat email yang telah didaftarkan.
+        \item \textbf{Password:} Masukkan kata sandi Anda.
+    \end{itemize}
+    \item Anda juga dapat mencentang kotak \textbf{Remember me} agar tidak perlu sering *login* ulang.
+    
+    \begin{figure}[H]
+        \centering
+        % GANTI TEKS DI BAWAH INI DENGAN NAMA FILE SCREENSHOT ASLI (MISAL: login.png)
+        \includegraphics[width=0.8\textwidth]{placeholder_login.png}
+        \caption{Halaman Login Enterprise (Membutuhkan Company Code)}
+        \label{figure:1.1}
+    \end{figure}
+    
+    \item Tekan tombol \textbf{Sign in}. Jika data benar, Anda akan diarahkan ke halaman \textbf{Dashboard}.
+\end{enumerate}
+
+\section{Navigasi Dashboard}
+\textit{Dashboard} adalah pusat kendali Anda. Tampilannya akan menyesuaikan dengan peran Anda (seorang Direktur akan melihat grafik keuntungan, sedangkan staf Gudang akan melihat peringatan barang habis).
+
+\begin{enumerate}
+    \item Di sebelah \textbf{Kiri}, Anda akan menemukan \textbf{Sidebar Menu} yang berisi daftar modul. Klik salah satu menu (contoh: \textit{Inventory}) untuk membuka fitur tersebut.
+    \item Di bagian \textbf{Tengah}, terdapat \textbf{Widget Analitik} atau grafik ringkasan kerja.
+    \item Di sudut \textbf{Kanan Atas}, terdapat ikon nama Anda. Klik ikon tersebut untuk mengubah profil, mengganti kata sandi, atau melakukan \textbf{Sign out} (Keluar) dari sistem.
+    
+    \begin{figure}[H]
+        \centering
+        % GANTI TEKS DI BAWAH INI DENGAN NAMA FILE SCREENSHOT ASLI (MISAL: dashboard.png)
+        \includegraphics[width=0.8\textwidth]{placeholder_dashboard.png}
+        \caption{Halaman Dashboard (Tampilan Manager)}
+        \label{figure:1.2}
+    \end{figure}
+\end{enumerate}
+
+\section{Penanganan Kendala Umum (Troubleshooting)}
+\begin{itemize}
+    \item \textbf{Lupa Kata Sandi:} Jika Anda gagal \textit{login} 3 kali, hubungi Manajer IT/HR Anda. Dalam sistem \textit{enterprise}, reset kata sandi seringkali membutuhkan persetujuan Administrator demi keamanan data.
+    \item \textbf{Menu Tidak Muncul:} Jika Anda merasa seharusnya memiliki akses ke modul \textit{Procurement} namun menu tersebut tidak ada di Sidebar Anda, itu berarti Manajer IT belum memberikan otoritas (\textit{Role}) tersebut ke akun Anda.
+\end{itemize}

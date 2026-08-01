@@ -1,0 +1,78 @@
+\chapter{Modul Sumber Daya Manusia (HR)}
+
+Modul \textit{Human Resources} (HR) bertugas mencatat dan mengelola data seluruh karyawan perusahaan, dari informasi pribadi, riwayat jabatan, hingga rekening bank untuk penggajian.
+
+\section{Konsep Dasar \& Matriks Peran}
+Data karyawan di sistem ini sangat rahasia (\textit{confidential}). Gaji dan informasi pribadi tidak boleh bisa dilihat sembarang orang.
+
+\textbf{Pihak yang Terlibat (Role Matrix):}
+\begin{itemize}
+    \item \textbf{HR Staff / HR Manager}: Satu-satunya peran yang berhak menambah, mengedit, dan melihat daftar lengkap karyawan beserta detail gaji.
+    \item \textbf{System Administrator}: Dapat mereset kata sandi akun karyawan jika mereka lupa.
+    \item \textbf{Karyawan Umum}: (Jika fitur \textit{Employee Self-Service} diaktifkan nantinya) hanya dapat melihat data dirinya sendiri.
+\end{itemize}
+
+\section{Skenario Dunia Nyata \& Alur Kerja}
+Misalkan ada karyawan baru bernama Budi yang masuk bekerja hari ini.
+\begin{enumerate}
+    \item \textbf{Fase 1 (Pendaftaran):} Staf HR memasukkan data diri Budi, menentukan jabatannya di departemen Produksi, serta memasukkan nomor rekening Budi.
+    \item \textbf{Fase 2 (Absensi \& Cuti):} Seiring waktu, Budi bekerja, absen, atau mengambil cuti (tercatat di relasi \textit{Attendance} dan \textit{Leave}).
+    \item \textbf{Fase 3 (Penggajian):} Di akhir bulan, HR mencetak Slip Gaji Budi (PDF) dan memberikannya.
+    \item \textbf{Fase 4 (Reset Password):} Suatu hari Budi lupa kata sandi aplikasinya. HR mengeklik tombol "Reset Password Akun" untuk Budi.
+\end{enumerate}
+
+\section{Panduan Penggunaan (Step-by-Step)}
+
+\subsection{1. Mendaftarkan Karyawan Baru}
+\begin{enumerate}
+    \item Buka menu \textbf{Employees} (Karyawan).
+    \item Klik \textbf{New Employee}.
+    \item Pada bagian \textbf{Data Pribadi}, isi selengkap mungkin:
+    \begin{itemize}
+        \item \textbf{NIK:} Nomor Induk Karyawan (wajib unik).
+        \item \textbf{Nama Lengkap}, \textbf{Email}, \textbf{Nomor Telepon}, \textbf{Tanggal Lahir}, dan \textbf{Jenis Kelamin}.
+        \item \textbf{Foto:} Anda bisa mengunggah file gambar (\textit{upload}) maksimal 2MB.
+        \item \textbf{Alamat} domisili.
+    \end{itemize}
+    \item Pada bagian \textbf{Data Kepegawaian}, tentukan:
+    \begin{itemize}
+        \item \textbf{Departemen} dan \textbf{Jabatan}: (Catatan: Daftar jabatan hanya akan muncul jika departemen sudah dipilih).
+        \item \textbf{Tipe Karyawan:} \textit{Permanent} (Tetap), \textit{Contract} (Kontrak), \textit{Probation}, atau \textit{Intern} (Magang).
+        \item \textbf{Tanggal Masuk} dan \textbf{Tanggal Berakhir} (khusus untuk karyawan tidak tetap).
+        \item \textbf{Gaji Pokok:} Gaji *basic* dalam Rupiah.
+    \end{itemize}
+    \item Lengkapi \textbf{Data Bank} (Nama Bank, Nomor Rekening, Nama Pemilik) untuk keperluan transfer gaji.
+    \item Lengkapi \textbf{Kontak Darurat} (Nama dan Nomor Telepon).
+    \item Klik \textbf{Create}. Data Budi resmi tersimpan.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{placeholder_form_employee.png}
+    \caption{Formulir Pendaftaran Karyawan Baru}
+    \label{figure:6.form_employee}
+\end{figure}
+
+\subsection{2. Mencetak Slip Gaji (Export PDF Slip)}
+\begin{enumerate}
+    \item Buka tabel daftar \textbf{Employees}.
+    \item Cari nama karyawan yang diinginkan.
+    \item Di kolom Action paling kanan, temukan tombol berikon Dokumen (\textbf{Export PDF Slip}).
+    \item Sistem akan secara otomatis mengunduh file PDF berisikan slip gaji terakhir dari karyawan tersebut.
+\end{enumerate}
+
+\subsection{3. Mereset Kata Sandi Karyawan}
+Terkadang karyawan lupa *password* untuk masuk ke dalam sistem ERP. HR atau Admin dapat membantunya.
+\begin{enumerate}
+    \item Buka daftar \textbf{Employees}.
+    \item Cari nama karyawan tersebut.
+    \item Klik tombol berikon Kunci Kuning (\textbf{Reset Password Akun}). Tombol ini hanya muncul jika karyawan tersebut sudah punya akun \textit{User} yang tertaut.
+    \item Masukkan \textbf{Password Baru} dan ketik ulang di \textbf{Konfirmasi Password}.
+    \item Klik \textit{Confirm}. Saat karyawan tersebut masuk menggunakan kata sandi baru ini, sistem akan memaksanya (\textit{force change}) untuk mengganti lagi *password* tersebut demi keamanan.
+\end{enumerate}
+
+\section{Penanganan Masalah (Edge Cases)}
+\begin{itemize}
+    \item \textbf{Error saat mencetak Slip Gaji ("Belum ada data payroll"):} Anda tidak bisa mencetak slip gaji jika belum ada data *Payroll* (Penggajian) bulan ini untuk karyawan tersebut yang digenerate oleh sistem di menu *Payroll*.
+    \item \textbf{Jabatan tidak bisa dipilih:} Pastikan Anda sudah memilih \textbf{Departemen} di *dropdown* atasnya. Jabatan bergantung/terkunci pada Departemen.
+\end{itemize}

@@ -1,0 +1,102 @@
+\chapter{Modul Penjualan (Sales)}
+
+Modul Penjualan (\textit{Sales}) adalah gerbang utama pendapatan perusahaan. Di sinilah interaksi dengan pelanggan (\textit{Customer}) dicatat, pesanan dibuat, barang dikirim, dan tagihan diterbitkan.
+
+\section{Konsep Dasar \& Matriks Peran}
+Modul ini melibatkan kerja sama lintas departemen. Transaksi Penjualan tidak berdiri sendiri; ia memicu reaksi berantai ke Gudang dan Keuangan.
+
+\textbf{Pihak yang Terlibat (Role Matrix):}
+\begin{itemize}
+    \item \textbf{Sales Staff}: Berhak membuat Data Pelanggan dan \textit{Sales Order} (Pesanan).
+    \item \textbf{Warehouse Staff}: Bertanggung jawab menyiapkan barang fisik dan menerbitkan \textit{Delivery Order} (Surat Jalan).
+    \item \textbf{Finance Staff}: Bertanggung jawab menagih pembayaran dan menerbitkan \textit{Sales Invoice} (Faktur Penjualan).
+\end{itemize}
+
+\section{Skenario Dunia Nyata \& Alur Kerja}
+Bayangkan Anda adalah staf Sales. PT. Maju Jaya (Pelanggan) menelepon untuk memesan 100 sak semen.
+\begin{enumerate}
+    \item \textbf{Fase 1 (Sales):} Anda mencatat pelanggan di form Customer, lalu membuat \textbf{Sales Order (SO)}. Status awal SO adalah \textit{Draft}. Setelah setuju, Anda mengeklik \textbf{Approve Order}.
+    \item \textbf{Fase 2 (Gudang):} Sistem memberi tahu orang Gudang. Mereka menyiapkan 100 sak semen, menekan tombol \textbf{Create DO}, lalu mencetak \textbf{Delivery Order (DO)} untuk dibawa truk.
+    \item \textbf{Fase 3 (Finance):} Setelah DO ditandatangani pelanggan, orang Keuangan melihat SO tersebut dan menekan tombol \textbf{Create Invoice} untuk menagih PT. Maju Jaya.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    % USER: Silakan masukkan gambar Flowchart Mermaid Penjualan di sini
+    \includegraphics[width=0.9\textwidth]{placeholder_flowchart_sales.png}
+    \caption{Diagram Alur Kerja Modul Penjualan}
+    \label{figure:2.workflow}
+\end{figure}
+
+\section{Panduan Penggunaan (Step-by-Step)}
+
+\subsection{1. Membuat Data Pelanggan (Oleh Sales)}
+Sebelum membuat pesanan, pelanggan harus terdaftar di sistem.
+\begin{enumerate}
+    \item Klik menu \textbf{Customers} di *sidebar* kiri.
+    \item Klik tombol \textbf{New Customer} (Pelanggan Baru).
+    \item Anda wajib mengisi kolom-kolom berikut sesuai form yang tersedia:
+    \begin{itemize}
+        \item \textbf{Code:} Kode unik pelanggan (wajib diisi dan tidak boleh sama dengan yang lain).
+        \item \textbf{Name:} Nama pelanggan atau perusahaan.
+        \item \textbf{Email} dan \textbf{Phone:} Kontak pelanggan.
+        \item \textbf{Address:} Alamat lengkap.
+        \item \textbf{NPWP (tax\_id):} Nomor Pokok Wajib Pajak milik pelanggan.
+    \end{itemize}
+    \item Klik \textbf{Create} untuk menyimpan data.
+\end{enumerate}
+
+\subsection{2. Membuat Pesanan / Sales Order (Oleh Sales)}
+\begin{enumerate}
+    \item Klik menu \textbf{Sales Orders}.
+    \item Klik tombol \textbf{New Sales Order}.
+    \item Isi formulir sesuai data pesanan:
+    \begin{itemize}
+        \item \textbf{So Number:} (Otomatis terisi oleh sistem, contoh: SO-20260801-1234).
+        \item \textbf{Customer:} Pilih nama pelanggan yang baru Anda buat.
+        \item \textbf{Order Date:} Tanggal pesanan dibuat.
+        \item \textbf{Status:} Biarkan dalam keadaan \textit{Draft}.
+        \item \textbf{Notes:} Tambahkan catatan tambahan jika diperlukan.
+    \end{itemize}
+    \item \textbf{Daftar Barang (Items):} Klik tombol \textbf{Add item}, pilih \textit{Product}, masukkan \textit{Quantity}, \textit{Unit Price} (Harga Satuan), dan \textit{Total Price}. Ulangi jika ada banyak barang.
+    \item Klik \textbf{Create}. SO telah resmi dibuat.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{placeholder_form_so.png}
+    \caption{Formulir Pembuatan Sales Order}
+    \label{figure:2.so}
+\end{figure}
+
+\subsection{3. Menyetujui dan Mengirim Barang (Oleh Sales \& Gudang)}
+Sistem ini menggunakan fitur \textit{Action Buttons} yang canggih untuk mengubah status dokumen.
+\begin{enumerate}
+    \item Buka daftar \textbf{Sales Orders}, cari SO yang berstatus \textit{Draft}.
+    \item Klik tombol **Approve Order** (Ikon Centang Hijau). Status SO akan berubah menjadi \textit{Confirmed}.
+    \item Setelah dikonfirmasi, staf Gudang dapat mengeklik tombol **Create DO** (Ikon Kubus Hijau) untuk mencetak Surat Jalan secara otomatis. Sistem akan langsung menduplikasi data pesanan ke modul \textbf{Delivery Orders}.
+    \item Buka menu \textbf{Delivery Orders} untuk melihat DO yang terbuat. Anda dapat mengedit \textbf{Delivery Date}, mengisi \textbf{Shipping Address}, atau mengubah statusnya menjadi \textit{Shipped} atau \textit{Delivered}.
+    \item Tekan tombol **Print PDF** untuk mencetak Surat Jalan fisik.
+    \item Kembali ke \textbf{Sales Orders}, tekan tombol **Mark Delivered** (Ikon Truk Biru) saat barang dikonfirmasi sampai.
+\end{enumerate}
+
+\subsection{4. Menerbitkan Tagihan / Invoice (Oleh Finance)}
+\begin{enumerate}
+    \item Setelah barang sampai (status DO \textit{Delivered}), staf Keuangan membuka menu \textbf{Sales Orders}.
+    \item Klik tombol **Create Invoice** (Ikon Dokumen Kuning).
+    \item Sistem akan secara otomatis menerbitkan \textit{Sales Invoice} berdasarkan SO tersebut dan mengubah status SO menjadi \textit{Invoiced}.
+    \item Buka menu \textbf{Sales Invoices} untuk melihat tagihan tersebut.
+\end{enumerate}
+
+\subsection{5. Mengekspor Data ke Excel}
+\begin{enumerate}
+    \item Buka menu \textbf{Sales Orders}.
+    \item Pilih beberapa transaksi yang ingin diekspor.
+    \item Klik tombol \textbf{Export to Excel} pada menu \textit{Bulk Actions} untuk mengunduh laporannya.
+\end{enumerate}
+
+\section{Penanganan Masalah (Edge Cases)}
+\begin{itemize}
+    \item \textbf{Tombol Create DO Tidak Muncul:} Pastikan status \textit{Sales Order} sudah disetujui (minimal status \textit{Confirmed}). Gudang tidak bisa mengirim barang jika pesanan masih berstatus \textit{Draft}.
+    \item \textbf{Nomor Pelanggan (Code) Gagal Disimpan:} Ini terjadi karena \textit{Code} pelanggan tersebut sudah pernah dipakai. Gunakan kode unik lain.
+\end{itemize}

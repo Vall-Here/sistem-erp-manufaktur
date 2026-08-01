@@ -1,0 +1,93 @@
+\chapter{Modul Produksi (Production)}
+
+Modul Produksi adalah pusat transformasi bahan baku (\textit{Raw Material}) menjadi barang jadi (\textit{Finished Good}). ERP ini mengadopsi standar MRP (\textit{Material Requirements Planning}) untuk memastikan pabrik tidak pernah kehabisan bahan saat mesin menyala.
+
+\section{Konsep Dasar \& Matriks Peran}
+Proses produksi tidak bisa dilakukan sembarangan. Anda membutuhkan "Resep" yang baku dan "Perintah Kerja" yang resmi.
+
+\textbf{Pihak yang Terlibat (Role Matrix):}
+\begin{itemize}
+    \item \textbf{Production Engineer}: Bertanggung jawab membuat resep standar pabrik yang disebut \textbf{Bill of Material (BOM)}.
+    \item \textbf{Production Staff/Operator}: Mengeksekusi pembuatan barang berdasarkan \textbf{Work Order (WO)} harian dan melaporkan jumlah barang jadi yang berhasil diproduksi.
+    \item \textbf{Quality Control (QC) Staff}: Memeriksa hasil produksi (atau barang masuk dari vendor) untuk memastikan tidak ada barang cacat (\textit{reject}) sebelum masuk gudang.
+\end{itemize}
+
+\section{Skenario Dunia Nyata \& Alur Kerja}
+Misalkan pabrik kita memproduksi Sepeda.
+\begin{enumerate}
+    \item \textbf{Fase 1 (Pembuatan Resep):} Insinyur mendefinisikan BOM: 1 Sepeda membutuhkan 1 Rangka, 2 Roda, dan 1 Setang.
+    \item \textbf{Fase 2 (Perintah Kerja):} Supervisor membuat \textbf{Work Order (WO)} untuk memproduksi 100 Sepeda hari ini. Sistem otomatis menahan (\textit{reserve}) 100 Rangka, 200 Roda, dan 100 Setang dari Gudang. Status WO menjadi \textit{Released}.
+    \item \textbf{Fase 3 (Laporan Hasil):} Sore harinya, operator melaporkan \textbf{Record Output}: 98 Sepeda bagus, 2 Sepeda cacat.
+    \item \textbf{Fase 4 (Inspeksi QC):} Tim QC melakukan verifikasi atas 2 barang cacat tersebut melalui \textbf{Quality Inspection} untuk memutuskan apakah bisa diperbaiki atau harus dibuang.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{placeholder_flowchart_production.png}
+    \caption{Diagram Alur Kerja Modul Produksi}
+    \label{figure:5.workflow}
+\end{figure}
+
+\section{Panduan Penggunaan (Step-by-Step)}
+
+\subsection{1. Membuat Resep Produksi (Bill of Material)}
+\begin{enumerate}
+    \item Buka menu \textbf{Bill Of Materials}.
+    \item Klik \textbf{New Bill Of Material}.
+    \item Pada bagian \textbf{Header BOM}, isi:
+    \begin{itemize}
+        \item \textbf{Nama BOM:} Misal "Resep Sepeda Standar".
+        \item \textbf{Produk Output:} Pilih barang jadi (\textit{Finished Good}) yang akan dihasilkan.
+        \item \textbf{Output Qty:} Jumlah yang dihasilkan dari satu resep ini (biasanya 1).
+        \item \textbf{Status:} Biarkan \textit{Draft} atau ubah ke \textit{Active} jika sudah valid.
+    \end{itemize}
+    \item Pada bagian \textbf{Material Items}, tambahkan semua bahan baku yang dibutuhkan dengan mengeklik \textbf{Add item}.
+    \begin{itemize}
+        \item \textbf{Material:} Pilih bahan bakunya.
+        \item \textbf{Qty Required:} Jumlah bahan baku yang dibutuhkan.
+        \item \textbf{Wastage (\%):} Toleransi bahan terbuang/rusak dalam proses (opsional).
+    \end{itemize}
+    \item Klik \textbf{Create}. Resep kini tersimpan di database.
+\end{enumerate}
+
+\subsection{2. Membuat Perintah Kerja (Work Order)}
+\begin{enumerate}
+    \item Buka menu \textbf{Work Orders}.
+    \item Klik \textbf{New Work Order}.
+    \item Isi form pembuatan WO:
+    \begin{itemize}
+        \item \textbf{BOM:} Pilih resep (BOM) yang akan digunakan. Sistem akan mengunci produk apa yang akan dibuat.
+        \item \textbf{Planned Qty:} Jumlah barang yang ingin diproduksi.
+        \item \textbf{Due Date:} Target tanggal selesai.
+    \end{itemize}
+    \item Klik \textbf{Create}.
+\end{enumerate}
+
+\subsection{3. Menjalankan dan Menyelesaikan Produksi}
+Sistem tidak membiarkan Anda mencatat hasil produksi jika WO belum di-\textit{release} ke lantai pabrik.
+\begin{enumerate}
+    \item Buka daftar \textbf{Work Orders}.
+    \item Klik tombol kuning \textbf{Release} pada WO berstatus \textit{Draft}. Statusnya berubah menjadi \textit{Released} dan bahan baku akan ditarik dari sistem.
+    \item Anda dapat mencetak dokumen fisik dengan menekan tombol hijau \textbf{Print PDF} untuk diberikan kepada operator pabrik.
+    \item Setelah produksi berjalan, staf pabrik mengeklik tombol hijau \textbf{Record Output} (Ikon Kubus).
+    \item Pilih \textbf{Gudang} penyimpanan barang jadi.
+    \item Masukkan \textbf{Good Qty} (Barang Bagus) dan \textbf{Rejected Qty} (Barang Cacat).
+    \item Jika WO sudah selesai sepenuhnya, klik tombol \textbf{Complete} (Ikon Centang). Status WO berubah menjadi \textit{Completed}.
+\end{enumerate}
+
+\subsection{4. Melakukan Inspeksi Kualitas (Quality Control)}
+Jika ada barang \textit{reject} dari produksi atau vendor, QC wajib mendatanya.
+\begin{enumerate}
+    \item Buka menu \textbf{Quality Inspections} (di bawah grup *Quality Control*).
+    \item Klik \textbf{New Quality Inspection}.
+    \item Pilih \textbf{Reference Type} (apakah dari \textit{Work Order Outbound} atau \textit{Goods Receipt Inbound}).
+    \item Isi \textbf{Reference Id} dengan nomor ID dokumennya.
+    \item Pilih \textbf{Status} (\textit{Pass}, \textit{Fail}, atau \textit{Partial Pass}).
+    \item Pada tabel \textbf{Items}, masukkan barangnya, \textbf{Qty Inspected} (Jumlah diperiksa), \textbf{Qty Passed} (Jumlah lolos tes), \textbf{Qty Failed} (Jumlah cacat), dan \textbf{Defect Reason} (Alasan cacat, misal: "Cat Terkelupas").
+    \item Klik \textbf{Create}.
+\end{enumerate}
+
+\section{Penanganan Masalah (Edge Cases)}
+\begin{itemize}
+    \item \textbf{Tidak Bisa Record Output:} Pastikan status Work Order tidak dalam keadaan \textit{Draft}. Tombol \textbf{Record Output} HANYA muncul pada WO dengan status \textit{Released} atau \textit{In Progress}.
+\end{itemize}

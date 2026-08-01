@@ -1,0 +1,49 @@
+\chapter{Modul Pengaturan Sistem (System)}
+
+Modul \textit{System} adalah tulang punggung keamanan dan hak akses dari seluruh ERP. Di sini, Anda menentukan siapa saja yang boleh login, dan tombol apa saja yang boleh mereka klik.
+
+\section{Konsep Dasar \& Matriks Peran}
+ERP ini menggunakan konsep \textbf{RBAC (Role-Based Access Control)}.
+Artinya, kita tidak memberikan izin (\textit{permission}) langsung ke orang, melainkan kita membuat "Jabatan/Role", menaruh izin di dalam \textit{Role} tersebut, lalu memasukkan *User* ke dalam \textit{Role} tersebut.
+
+\textbf{Pihak yang Terlibat (Role Matrix):}
+\begin{itemize}
+    \item \textbf{Super Admin}: Penguasa tertinggi sistem. Dapat melihat semua menu, mengubah *password* siapa saja, dan mengambil alih (*impersonate*) akun orang lain tanpa perlu tahu *password* mereka.
+\end{itemize}
+
+\section{Panduan Penggunaan (Step-by-Step)}
+
+\subsection{1. Membuat dan Mengatur Hak Akses (Role \& Permission)}
+\begin{enumerate}
+    \item Buka menu \textbf{Roles \& Permissions} di grup \textit{System}.
+    \item Klik \textbf{New Role \& Permission}.
+    \item Isi \textbf{Role} (Nama grup), contoh: "Staff Gudang Bekasi".
+    \item Di bagian bawah, ada kotak centang panjang berisi semua *Permissions* (Izin) yang dikelompokkan berdasarkan modul (\textit{HR, Inventory, Procurement, Finance, Production, Assets, System}).
+    \item Centang izin yang relevan. Misalnya untuk orang gudang, centang: \textit{inventory.viewAny}, \textit{inventory.adjustStock}, dll.
+    \item Klik \textbf{Create}.
+\end{enumerate}
+
+\subsection{2. Membuat Akun Pengguna Baru (User)}
+Data *User* (untuk Login) berbeda dengan data *Employee* (HR). Anda harus membuat *User* agar *Employee* bisa *login*.
+\begin{enumerate}
+    \item Buka menu \textbf{Users}.
+    \item Klik \textbf{New User}.
+    \item Pada bagian \textbf{Data Akun}, isi \textbf{Nama}, \textbf{Email} (untuk login), \textbf{Nomor Telepon}, \textbf{Foto}, dan \textbf{Password}.
+    \item Pada bagian \textbf{Akses}, pilih \textbf{Role} yang baru saja Anda buat (Misal: "Staff Gudang Bekasi"). \textit{User} bisa punya lebih dari 1 \textit{Role}.
+    \item Di kolom \textbf{Link ke Karyawan}, pilih nama Karyawannya agar akun ini tertaut dengan data HR.
+    \item Centang \textbf{Paksa Ganti Password} jika Anda ingin sistem memaksa pengguna mengganti *password* saat mereka pertama kali *login*.
+    \item Klik \textbf{Create}.
+\end{enumerate}
+
+\subsection{3. Mengelola Akun (Reset Password \& Impersonate)}
+Jika terjadi masalah dengan akun seseorang, \textit{Super Admin} dapat menggunakan 3 fitur canggih di tabel \textbf{Users}:
+\begin{enumerate}
+    \item \textbf{Reset Password (Ikon Kunci Kuning):} Untuk mengganti *password* pengguna yang lupa. Anda bisa memilih mode *Generate Otomatis* (sistem membuatkan *password* acak) atau *Input Manual*.
+    \item \textbf{Revoke All Sessions (Ikon Perisai Merah):} Sangat penting digunakan jika akun karyawan dibajak atau karyawan dipecat tiba-tiba. Fitur ini akan memutus secara paksa sesi login pengguna tersebut di semua perangkat seketika itu juga.
+    \item \textbf{Impersonate (Ikon Wajah Abu-abu):} (Hanya untuk \textit{Super Admin}). Fitur ini memungkinkan Anda "merasuki" akun pengguna tersebut untuk mengecek apakah aplikasi di layar mereka sudah benar (apakah hak aksesnya tepat). Anda akan \textit{login} sebagai mereka tanpa perlu mengetikkan *password* mereka.
+\end{enumerate}
+
+\section{Penanganan Masalah (Edge Cases)}
+\begin{itemize}
+    \item \textbf{User Tidak Bisa Melihat Menu:} Pastikan Anda sudah memberikan \textit{Role} kepada \textit{User} tersebut, dan pastikan di dalam \textit{Role} tersebut Anda sudah mencentang *Permission* yang mengandung kata "viewAny" (contoh: \textit{purchase\_order.viewAny}).
+\end{itemize}

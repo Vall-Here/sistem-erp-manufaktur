@@ -1,0 +1,72 @@
+\documentclass[12pt,a4paper,oneside]{book}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{xcolor}
+
+% Konfigurasi Margin
+\geometry{
+    top=3cm,
+    bottom=3cm,
+    left=3.5cm,
+    right=2.5cm
+}
+
+% Konfigurasi Hyperlink
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={User Manual Manufacture Admin},
+    pdfpagemode=FullScreen,
+}
+
+% Informasi Dokumen
+\title{\Huge \textbf{User Manual}\\ \Large \textbf{Sistem ERP Manufacture Admin}}
+\author{Departemen IT \& Sistem Informasi}
+\date{\today}
+
+\begin{document}
+
+% Halaman Judul
+\maketitle
+
+% Daftar Isi
+\tableofcontents
+\newpage
+
+% Bab 1: Pendahuluan
+\include{chapters/01_pendahuluan}
+
+% Bab 2: Modul Sales
+\include{chapters/02_sales}
+
+% Bab 3: Modul Inventory
+\include{chapters/03_inventory}
+
+% Bab 4: Modul Procurement
+\include{chapters/04_procurement}
+
+% Bab 5: Modul Production
+\include{chapters/05_production}
+
+% Bab 6: Modul HR
+\include{chapters/06_hr}
+
+% Bab 7: Modul Finance
+\include{chapters/07_finance}
+
+% Bab 8: Modul Asset Management
+\include{chapters/08_asset}
+
+% Bab 9: Modul System
+\include{chapters/09_system}
+
+\end{document}

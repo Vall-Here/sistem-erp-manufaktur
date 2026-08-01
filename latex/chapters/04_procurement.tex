@@ -1,0 +1,77 @@
+\chapter{Modul Pembelian (Procurement)}
+
+Modul Pembelian (\textit{Procurement}) mengatur alur pengadaan barang dan bahan baku dari \textit{Supplier/Vendor} luar. 
+
+\section{Konsep Dasar \& Matriks Peran}
+Pembelian aset/bahan baku perusahaan tidak boleh dilakukan serampangan. Sistem membaginya ke dalam fase permohonan (*Request*) dan pemesanan (*Order*).
+
+\textbf{Pihak yang Terlibat (Role Matrix):}
+\begin{itemize}
+    \item \textbf{Purchasing Staff}: Membuat \textit{Purchase Request} (PR), menyampaikannya (*Submit*), lalu mengubah PR yang disetujui menjadi \textit{Purchase Order} (PO). Juga berwenang mencatat penerimaan barang (\textit{Receive Goods}) dari vendor.
+    \item \textbf{Purchasing Manager}: Menyetujui (\textit{Approve}) atau menolak (\textit{Reject}) PR dan PO yang masuk.
+    \item \textbf{Finance Staff}: Bekerja setelah dokumen difinalisasi untuk mengurus hutang (\textit{Accounts Payable}).
+\end{itemize}
+
+\section{Skenario Dunia Nyata \& Alur Kerja}
+\begin{enumerate}
+    \item \textbf{Fase 1 (Request):} Staf membuat \textbf{Purchase Request (PR)}. Status PR bergeser dari \textit{Draft} $\rightarrow$ \textit{Submitted} $\rightarrow$ \textit{Approved}.
+    \item \textbf{Fase 2 (Order):} PR yang disetujui diubah menjadi PO menggunakan tombol \textbf{Convert to PO}. PO juga harus melewati fase *approval* hingga statusnya \textit{Sent} ke vendor.
+    \item \textbf{Fase 3 (Penerimaan):} Saat barang tiba, staf membuka PO tersebut lalu mengeklik tombol \textbf{Receive Goods}. Sistem akan otomatis membuatkan dokumen \textbf{Goods Receipt (GR)}.
+    \item \textbf{Fase 4 (Finance):} Setelah barang utuh, staf mengeklik \textbf{Post to AP} untuk meneruskan data hutang ke bagian Keuangan.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{placeholder_flowchart_procurement.png}
+    \caption{Diagram Alur Kerja Modul Pembelian}
+    \label{figure:4.workflow}
+\end{figure}
+
+\section{Panduan Penggunaan (Step-by-Step)}
+
+\subsection{1. Membuat Purchase Request (PR)}
+\begin{enumerate}
+    \item Buka menu \textbf{Purchase Requests}.
+    \item Klik \textbf{New Purchase Request}.
+    \item Pada bagian \textbf{Informasi Request}, isikan:
+    \begin{itemize}
+        \item \textbf{Kode PR:} (Otomatis dibuat sistem).
+        \item \textbf{Tanggal Request} dan \textbf{Tanggal Dibutuhkan}.
+        \item \textbf{Requested By:} Nama peminta barang.
+        \item \textbf{Alasan:} Mengapa barang ini perlu dibeli?
+    \end{itemize}
+    \item Pada bagian \textbf{Daftar Item}, klik \textbf{Add item}, pilih produk, isi \textbf{Qty} (Kuantitas), \textbf{Satuan}, dan \textbf{Estimasi Harga} satuan.
+    \item Klik \textbf{Create}. Status PR kini adalah \textit{Draft}.
+    \item Buka kembali dokumen PR tersebut, lalu klik tombol kuning \textbf{Submit}. Dokumen akan terkirim ke atasan.
+\end{enumerate}
+
+\subsection{2. Menyetujui dan Mengubah PR Menjadi PO}
+(Hanya dapat dilakukan oleh pengguna berhak *Approve*).
+\begin{enumerate}
+    \item Buka PR berstatus \textit{Submitted}.
+    \item Klik tombol hijau \textbf{Approve}, masukkan *Catatan Approval*, lalu klik Submit.
+    \item Setelah statusnya *Approved*, tekan tombol biru \textbf{Convert to PO}.
+    \item Pilih \textbf{Vendor}, \textbf{Target Delivery}, isi \textbf{Catatan PO} dan \textbf{Terms \& Conditions}, lalu tekan *Confirm*.
+    \item Sistem berhasil menciptakan draf \textbf{Purchase Order}.
+\end{enumerate}
+
+\subsection{3. Mengelola Purchase Order dan Menerima Barang}
+\begin{enumerate}
+    \item Buka menu \textbf{Purchase Orders}, cari PO yang baru dibuat.
+    \item Jika membuat PO manual tanpa PR, Anda wajib mengisi \textbf{Payment Term (hari)}, \textbf{Currency}, dan \textbf{Exchange Rate}, lalu melengkapi \textbf{Daftar Item} dengan \textbf{Harga Satuan} dan \textbf{PPN (\%)}.
+    \item Ajukan *approval* dengan mengeklik \textbf{Submit}, lalu minta atasan mengeklik \textbf{Approve} (status akan menjadi \textit{Sent}).
+    \item Saat truk vendor tiba, buka dokumen PO tersebut dan klik tombol \textbf{Receive Goods} (Ikon Truk).
+    \item Pilih \textbf{Gudang Tujuan}, pilih \textbf{Item PO} yang datang, dan catat persis angka \textbf{Qty Diterima} serta \textbf{Qty Ditolak} (jika ada yang cacat).
+    \item Dokumen penerimaan (*Goods Receipt*) berhasil dicatat!
+\end{enumerate}
+
+\subsection{4. Meneruskan ke Bagian Keuangan (Accounts Payable)}
+\begin{enumerate}
+    \item Jika barang telah lengkap diterima, klik tombol biru \textbf{Post to AP} di menu *Purchase Order* tersebut.
+    \item Otomatis tagihan akan berpindah ke modul Finance (Hutang Usaha) dan status PO berubah menjadi \textit{Invoiced}.
+\end{enumerate}
+
+\section{Penanganan Masalah (Edge Cases)}
+\begin{itemize}
+    \item \textbf{Penerimaan Sebagian (Parsial):} Jika vendor hanya mengirim 50 dari 100 pesanan, Anda bisa melakukan \textit{Receive Goods} untuk item 50 saja. Status PO akan berbunyi \textit{Partial Received}. Nanti Anda bisa mengulangi \textit{Receive Goods} kembali saat sisa 50 lainnya datang.
+\end{itemize}

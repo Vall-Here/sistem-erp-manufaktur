@@ -1,0 +1,76 @@
+\chapter{Modul Pabrikasi (Production)}
+
+Modul Pabrikasi (\textit{Production}) membedakan sistem ini dari sistem toko ritel biasa. Di sinilah bahan baku mentah "disihir" menjadi barang jadi, yang nilainya tentu berbeda (sebuah sepeda harganya tidak mungkin sama dengan gabungan harga besi dan karetnya).
+
+\section{Konsep Dasar \& Matriks Peran}
+Terdapat dua entitas utama di sini: \textbf{Bill of Materials (BoM)} yang merupakan "Resep Masakan", dan \textbf{Work Order (WO)} yang merupakan perintah "Mulai Memasak".
+
+\textbf{Pihak yang Terlibat (Role Matrix):}
+\begin{itemize}
+    \item \textbf{Production Manager / Engineer}: Merancang resep (BoM), menentukan biaya jasa/mesin, dan menerbitkan \textit{Work Order} ke lantai pabrik.
+    \item \textbf{Production Operator / Foreman}: Menjalankan \textit{Work Order}, lalu menginput Laporan Kualitas Harian (berapa produk bagus, berapa produk gagal).
+    \item \textbf{Warehouse Staff}: Terlibat di belakang layar, karena sistem akan secara otomatis "memakan" bahan mentah dan "memunculkan" barang jadi di Gudang begitu proses produksi dilaporkan selesai.
+\end{itemize}
+
+\section{Skenario Dunia Nyata \& Alur Kerja}
+Tuan Bos meminta dibuatkan Meja Kayu Premium.
+\begin{enumerate}
+    \item \textbf{Fase 1 (Design):} Manajer Produksi merancang bahwa 1 Meja Kayu butuh: 1 Papan, 4 Kaki Kayu, 20 Paku, dan Biaya Tukang Rp 50.000. Ini disimpan sebagai \textbf{BoM}.
+    \item \textbf{Fase 2 (Order):} Bulan depan, tim Sales minta pabrik membuat 10 Meja. Manajer membuat \textbf{Work Order} untuk BoM Meja dengan \textit{quantity} 10.
+    \item \textbf{Fase 3 (Execution):} Surat Kerja (WO) dicetak dan ditempel di papan pabrik. Operator mulai bekerja.
+    \item \textbf{Fase 4 (Reporting):} Setelah seminggu, Operator lapor: dari rencana 10 Meja, yang bagus ada 9, sedangkan 1 Meja patah kakinya (*Defect*). Sistem akan otomatis mengurangi (papan, kaki, paku) sebanyak-banyaknya untuk 10 Meja dari stok Gudang, namun hanya menambah 9 Meja Jadi ke stok Gudang. Biaya produksi meja yang rusak akan dibebankan secara otomatis oleh sistem akuntansi.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{placeholder_flowchart_production.png}
+    \caption{Diagram Alur Kerja Modul Produksi}
+    \label{figure:5.workflow}
+\end{figure}
+
+\section{Panduan Penggunaan (Step-by-Step)}
+
+\subsection{1. Membuat Resep (Bill of Materials)}
+Hanya boleh dilakukan oleh *Production Manager*.
+\begin{enumerate}
+    \item Buka menu \textbf{Bill of Materials}.
+    \item Klik \textbf{New Bill of Materials}.
+    \item \textbf{Product:} Pilih produk target (misal: "Meja Kayu Premium").
+    \item \textbf{Materials:} Masukkan bahan mentahnya (papan, kaki, paku) beserta jumlah persis yang dibutuhkan untuk merakit 1 Meja.
+    \item \textbf{Overhead Costs:} (Pilihan) Masukkan biaya tambahan, seperti listrik atau upah buruh, yang nantinya akan dijumlahkan dengan Harga Bahan Mentah untuk menemukan Harga Pokok Produksi (HPP) akhir produk.
+    \item Klik \textbf{Create}. Resep ini kini telah dihafal oleh sistem.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{placeholder_bom.png}
+    \caption{Formulir Bill of Materials (Resep Produksi)}
+    \label{figure:5.bom}
+\end{figure}
+
+\subsection{2. Menerbitkan Surat Perintah Kerja (Work Order)}
+\begin{enumerate}
+    \item Buka menu \textbf{Work Orders}.
+    \item Klik \textbf{New Work Order}.
+    \item \textbf{BoM:} Pilih "Meja Kayu Premium".
+    \item \textbf{Quantity:} Masukkan 10 (Sistem akan secara mandiri mengalikan resep bahan mentah Anda sebanyak 10 kali).
+    \item Tentukan Target Tanggal Selesai (\textit{End Date}).
+    \item Klik \textbf{Create}. Surat ini resmi menjadi pekerjaan aktif.
+    \item Jika perlu, Anda bisa mencetak dokumen \textbf{Print Work Order (PDF)} untuk ditempel di dinding pabrik sebagai instruksi buruh. URL dokumen dicetak secara khusus menggunakan \textit{UUID} untuk mengamankan kerahasiaan pabrik.
+\end{enumerate}
+
+\subsection{3. Menginput Hasil Akhir \& Sortir Kualitas (Quality Check)}
+Saat produksi dinyatakan selesai, laporkan hasilnya!
+\begin{enumerate}
+    \item Buka \textbf{Work Order} yang bersangkutan lalu tekan ikon \textbf{Edit}.
+    \item Cari kolom \textbf{Completed Quantity} (Barang Jadi Bagus). Masukkan angka: 9.
+    \item Cari kolom \textbf{Defect Quantity} (Barang Cacat). Masukkan angka: 1.
+    \item Ubah \textbf{Status} menjadi \textbf{Completed} (Selesai).
+    \item Klik \textbf{Save}. 
+    \item \textbf{Momen Magis:} Di detik ini juga, sistem melempar informasi ke Gudang untuk menyedot stok Papan dan Paku, melempar data ke Finance untuk menjurnal HPP 9 Meja plus biaya kerugian 1 Meja, lalu memberitahu Sales bahwa ada 9 Meja siap jual.
+\end{enumerate}
+
+\section{Penanganan Masalah (Edge Cases)}
+\begin{itemize}
+    \item \textbf{Stok Bahan Baku Minus:} Sistem memblokir proses "Completed" pada Work Order apabila stok Papan di gudang sebenarnya cuma sisa 2 (sedangkan butuhnya 10). Jika ini terjadi, Anda harus membuat \textit{Purchase Order} untuk membeli papan dahulu sebelum menyelesaikan Work Order tersebut.
+\end{itemize}

@@ -1,0 +1,74 @@
+\contentsline {chapter}{\numberline {1}Pendahuluan \& Arsitektur Sistem}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Konsep Dasar Sistem}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Matriks Peran (Role-Based Access Control)}{3}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Memulai Penggunaan (Login)}{4}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Navigasi Dashboard}{5}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Penanganan Kendala Umum (Troubleshooting)}{6}{section.1.5}%
+\contentsline {chapter}{\numberline {2}Modul Penjualan (Sales)}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Konsep Dasar \& Matriks Peran}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Skenario Dunia Nyata \& Alur Kerja}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Panduan Penggunaan (Step-by-Step)}{8}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}1. Membuat Data Pelanggan (Oleh Sales)}{8}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}2. Membuat Pesanan / Sales Order (Oleh Sales)}{9}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}3. Menyetujui dan Mengirim Barang (Oleh Sales \& Gudang)}{10}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}4. Menerbitkan Tagihan / Invoice (Oleh Finance)}{11}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}5. Mengekspor Data ke Excel}{11}{subsection.2.3.5}%
+\contentsline {section}{\numberline {2.4}Penanganan Masalah (Edge Cases)}{11}{section.2.4}%
+\contentsline {chapter}{\numberline {3}Modul Gudang (Inventory)}{12}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Konsep Dasar \& Matriks Peran}{12}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Skenario Dunia Nyata \& Alur Kerja}{12}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Panduan Penggunaan (Step-by-Step)}{13}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}1. Mendaftarkan Produk Baru (Master Data)}{13}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}2. Mencetak Barcode Produk}{14}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}3. Melakukan Transfer Antar-Gudang (Mutasi)}{14}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}4. Melakukan Penyesuaian Stok (Adjust Stock)}{15}{subsection.3.3.4}%
+\contentsline {section}{\numberline {3.4}Penanganan Masalah (Edge Cases)}{15}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Modul Pembelian (Procurement)}{16}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Konsep Dasar \& Matriks Peran}{16}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Skenario Dunia Nyata \& Alur Kerja}{16}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Panduan Penggunaan (Step-by-Step)}{17}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}1. Membuat Purchase Request (PR)}{17}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}2. Menyetujui dan Mengubah PR Menjadi PO}{18}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}3. Mengelola Purchase Order dan Menerima Barang}{18}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}4. Meneruskan ke Bagian Keuangan (Accounts Payable)}{18}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}Penanganan Masalah (Edge Cases)}{19}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Modul Pabrikasi (Production)}{20}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Konsep Dasar \& Matriks Peran}{20}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Skenario Dunia Nyata \& Alur Kerja}{20}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Panduan Penggunaan (Step-by-Step)}{21}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}1. Membuat Resep (Bill of Materials)}{21}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}2. Menerbitkan Surat Perintah Kerja (Work Order)}{22}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}3. Menginput Hasil Akhir \& Sortir Kualitas (Quality Check)}{23}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Penanganan Masalah (Edge Cases)}{23}{section.5.4}%
+\contentsline {chapter}{\numberline {6}Modul Sumber Daya Manusia (HR)}{24}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Konsep Dasar \& Matriks Peran}{24}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Skenario Dunia Nyata \& Alur Kerja}{24}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Panduan Penggunaan (Step-by-Step)}{25}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}1. Mendaftarkan Karyawan Baru}{25}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}2. Mencetak Slip Gaji (Export PDF Slip)}{26}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}3. Mereset Kata Sandi Karyawan}{26}{subsection.6.3.3}%
+\contentsline {section}{\numberline {6.4}Penanganan Masalah (Edge Cases)}{27}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Modul Keuangan (Finance)}{28}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Konsep Dasar \& Matriks Peran}{28}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Skenario Dunia Nyata \& Alur Kerja}{28}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Panduan Penggunaan (Step-by-Step)}{29}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}1. Mengelola Sales Invoice dan Mencetak Tagihan}{29}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}2. Meneruskan Tagihan ke Buku Piutang (Post to AR)}{30}{subsection.7.3.2}%
+\contentsline {subsection}{\numberline {7.3.3}3. Mencatat Penerimaan Uang dari Pelanggan (Record Receipt)}{30}{subsection.7.3.3}%
+\contentsline {section}{\numberline {7.4}Penanganan Masalah (Edge Cases)}{30}{section.7.4}%
+\contentsline {chapter}{\numberline {8}Modul Aset (Assets)}{31}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Konsep Dasar \& Matriks Peran}{31}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Skenario Dunia Nyata \& Alur Kerja}{31}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Panduan Penggunaan (Step-by-Step)}{32}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}1. Mencatat Aset Baru}{32}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}2. Mengaktifkan Aset}{32}{subsection.8.3.2}%
+\contentsline {subsection}{\numberline {8.3.3}3. Menghitung Penyusutan Bulanan (Post Depreciation)}{32}{subsection.8.3.3}%
+\contentsline {subsection}{\numberline {8.3.4}4. Menjadwalkan Perawatan (Schedule Maintenance)}{33}{subsection.8.3.4}%
+\contentsline {subsection}{\numberline {8.3.5}5. Membuang atau Menjual Aset (Dispose)}{33}{subsection.8.3.5}%
+\contentsline {chapter}{\numberline {9}Modul Pengaturan Sistem (System)}{34}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Konsep Dasar \& Matriks Peran}{34}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Panduan Penggunaan (Step-by-Step)}{34}{section.9.2}%
+\contentsline {subsection}{\numberline {9.2.1}1. Membuat dan Mengatur Hak Akses (Role \& Permission)}{34}{subsection.9.2.1}%
+\contentsline {subsection}{\numberline {9.2.2}2. Membuat Akun Pengguna Baru (User)}{35}{subsection.9.2.2}%
+\contentsline {subsection}{\numberline {9.2.3}3. Mengelola Akun (Reset Password \& Impersonate)}{35}{subsection.9.2.3}%
+\contentsline {section}{\numberline {9.3}Penanganan Masalah (Edge Cases)}{36}{section.9.3}%

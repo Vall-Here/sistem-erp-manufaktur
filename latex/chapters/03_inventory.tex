@@ -1,0 +1,87 @@
+\chapter{Modul Gudang (Inventory)}
+
+Modul Gudang (\textit{Inventory}) adalah jantung pergerakan barang dalam ERP ini. Semua material masuk, material keluar, dan perpindahan lokasi rak wajib diawasi di sini secara ketat (*real-time*).
+
+\section{Konsep Dasar \& Matriks Peran}
+Sistem ERP ini tidak membolehkan Anda mengubah jumlah stok sesuka hati tanpa dokumen pendukung. Setiap perubahan angka stok harus dipertanggungjawabkan melalui dokumen transaksi (Mutasi, Pembelian, atau Penjualan) atau melalui fitur penyesuaian khusus.
+
+\textbf{Pihak yang Terlibat (Role Matrix):}
+\begin{itemize}
+    \item \textbf{Warehouse Staff (Staf Gudang)}: Memiliki tugas melakukan input penerimaan barang, mengeluarkan barang ke pelanggan, mencetak *Barcode*, dan memindahkan barang antar-gudang.
+    \item \textbf{Warehouse Manager (Manajer Gudang)}: Memiliki otoritas khusus menyetujui dokumen *Stock Adjustment* (penyesuaian stok manual) jika ada selisih jumlah fisik di gudang dengan sistem.
+\end{itemize}
+
+\section{Skenario Dunia Nyata \& Alur Kerja}
+Misalkan pabrik memiliki dua gudang: Gudang Utama (di Jakarta) dan Gudang Cabang (di Bekasi). Suatu hari, Gudang Bekasi kekurangan bahan baku kardus, dan meminta Gudang Utama untuk mengirimkan stoknya.
+\begin{enumerate}
+    \item \textbf{Fase 1 (Pembuatan Transfer):} Staf Gudang Utama membuat dokumen \textbf{Inter-Warehouse Transfer} untuk memindahkan kardus ke Gudang Bekasi dengan status awal \textit{Draft}.
+    \item \textbf{Fase 2 (Transit):} Setelah barang diangkut truk, status diubah menjadi \textit{In Transit}.
+    \item \textbf{Fase 3 (Penerimaan):} Saat kardus tiba di Bekasi, Staf Gudang Bekasi membuka dokumen transfer tersebut dan mengubah statusnya menjadi \textit{Received}.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{placeholder_flowchart_inventory.png}
+    \caption{Diagram Alur Kerja Modul Gudang}
+    \label{figure:3.workflow}
+\end{figure}
+
+\section{Panduan Penggunaan (Step-by-Step)}
+
+\subsection{1. Mendaftarkan Produk Baru (Master Data)}
+Sebelum barang bisa disimpan atau dijual, ia harus didaftarkan dulu ke dalam sistem.
+\begin{enumerate}
+    \item Klik menu \textbf{Products}.
+    \item Klik \textbf{New Product}.
+    \item Anda wajib mengisi form pada bagian \textbf{Informasi Produk}:
+    \begin{itemize}
+        \item \textbf{SKU:} Kosongkan agar *generate* otomatis, atau isi dengan kode unik.
+        \item \textbf{Nama Produk:} Nama barang.
+        \item \textbf{Kategori} dan \textbf{Satuan:} Pilih dari daftar (*dropdown*).
+        \item \textbf{Tipe Produk:} Sangat penting untuk dipilih dengan benar (\textit{Raw Material}, \textit{Work In Progress}, \textit{Finished Good}, \textit{Consumable}, atau \textit{Asset}).
+        \item \textbf{Status Aktif:} Biarkan menyala.
+        \item \textbf{Deskripsi:} Catatan mengenai barang tersebut.
+    \end{itemize}
+    \item Lanjutkan mengisi bagian \textbf{Batas Stok}:
+    \begin{itemize}
+        \item \textbf{Min Stock} / \textbf{Max Stock} / \textbf{Reorder Point:} Angka untuk pengingat jika stok menipis.
+        \item \textbf{Harga Standar:} Harga rata-rata barang (dalam Rp).
+    \end{itemize}
+    \item Klik \textbf{Create}.
+\end{enumerate}
+
+\subsection{2. Mencetak Barcode Produk}
+Untuk memudahkan pelacakan fisik, Anda dapat menempelkan stiker Barcode di setiap dus barang.
+\begin{enumerate}
+    \item Buka daftar \textbf{Products}.
+    \item Pada tabel produk, cari tombol aksi dengan ikon QR Code (\textbf{Barcode}).
+    \item Halaman PDF *barcode* akan terbuka di *tab* baru secara otomatis. Cetak halaman tersebut.
+\end{enumerate}
+
+\subsection{3. Melakukan Transfer Antar-Gudang (Mutasi)}
+\begin{enumerate}
+    \item Buka menu \textbf{Inter Warehouse Transfers}.
+    \item Klik \textbf{New Inter Warehouse Transfer}.
+    \item Isi \textbf{Transfer Number} (Otomatis), lalu pilih gudang asal di \textbf{From Warehouse} dan gudang tujuan di \textbf{To Warehouse}.
+    \item \textbf{Transfer Date:} Tanggal perpindahan.
+    \item \textbf{Status:} Biarkan dalam status \textit{Draft}.
+    \item \textbf{Items:} Klik \textbf{Add item}, pilih produk yang dipindah, lalu masukkan angka di \textbf{Quantity}. (Catatan: \textit{Received Quantity} tidak bisa diubah karena dikunci oleh sistem untuk mencegah kecurangan, ini akan terisi otomatis atau oleh pihak penerima nanti).
+    \item Klik \textbf{Create}.
+\end{enumerate}
+
+\subsection{4. Melakukan Penyesuaian Stok (Adjust Stock)}
+Fitur ini HANYA terbuka jika Anda memiliki peran *Inventory Manager*.
+\begin{enumerate}
+    \item Buka menu \textbf{Products}.
+    \item Klik tombol kuning \textbf{Adjust Stock} di kanan atas layar.
+    \item Akan muncul form *Pop-up* Konfirmasi Penyesuaian Stok.
+    \item Pilih \textbf{Produk} dan lokasi \textbf{Gudang}.
+    \item Masukkan \textbf{Qty} selisihnya, lalu tentukan \textbf{Tipe Penyesuaian} (\textit{Penambahan} atau \textit{Pengurangan}).
+    \item Wajib mengisi kolom \textbf{Alasan} (misal: "Barang rusak dimakan rayap").
+    \item Klik tombol Submit/Confirm. Stok fisik akan langsung ter-update.
+\end{enumerate}
+
+\section{Penanganan Masalah (Edge Cases)}
+\begin{itemize}
+    \item \textbf{Tombol Adjust Stock Tidak Ada:} Itu berarti peran Anda di sistem saat ini hanyalah Staf Gudang biasa, bukan Manajer. Anda harus melaporkan selisih kepada atasan agar beliau yang melakukan penyesuaian di sistem.
+\end{itemize}

@@ -1,0 +1,66 @@
+\chapter{Modul Keuangan (Finance)}
+
+Modul Keuangan dalam sistem ERP ini dirancang sangat ketat untuk memastikan tidak ada uang masuk atau keluar yang lolos dari pencatatan. Modul ini berfokus pada penagihan Piutang (Accounts Receivable).
+
+\section{Konsep Dasar \& Matriks Peran}
+Tidak sembarang staf dapat mengakui uang telah diterima perusahaan. Pencatatan penerimaan uang akan otomatis menciptakan entri Jurnal Akuntansi (*Journal Entry*).
+
+\textbf{Pihak yang Terlibat (Role Matrix):}
+\begin{itemize}
+    \item \textbf{Finance Staff}: Menerbitkan \textit{Sales Invoice} (Faktur Penjualan), meneruskannya ke \textit{Accounts Receivable} (Buku Piutang), lalu mencatat uang jika pelanggan telah melunasi transfer.
+    \item \textbf{Finance Manager / SPV}: Berhak membatalkan jurnal, mencetak laporan akhir bulan, dan mengelola pemetaan akun buku besar (\textit{Account Mapping}).
+\end{itemize}
+
+\section{Skenario Dunia Nyata \& Alur Kerja}
+Setelah Sales mengirimkan pesanan ke Pelanggan X senilai Rp 10 Juta:
+\begin{enumerate}
+    \item \textbf{Fase 1 (Tagihan):} Staf membuatkan \textbf{Sales Invoice} dari menu Penjualan dan mencetaknya (PDF) untuk dikirim ke Pelanggan X.
+    \item \textbf{Fase 2 (Piutang):} Staf menekan tombol \textbf{Post to AR} pada *invoice* tersebut agar tercatat sebagai "Piutang Belum Dibayar" (*Unpaid*) di modul Finance.
+    \item \textbf{Fase 3 (Pelunasan):} Dua minggu kemudian, Pelanggan X mentransfer Rp 10 Juta ke rekening bank perusahaan. Staf Keuangan membuka dokumen Piutang tersebut, menekan \textbf{Record Receipt}, dan sistem otomatis mencatat Jurnal bahwa uang telah masuk ke Bank dan Piutang lunas.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{placeholder_flowchart_finance.png}
+    \caption{Diagram Alur Kerja Piutang \& Penerimaan Kas}
+    \label{figure:7.workflow}
+\end{figure}
+
+\section{Panduan Penggunaan (Step-by-Step)}
+
+\subsection{1. Mengelola Sales Invoice dan Mencetak Tagihan}
+\begin{enumerate}
+    \item Buka menu \textbf{Sales Invoices}. (Sebagian besar \textit{invoice} otomatis terbuat jika Staf Sales mengeklik *Create Invoice* pada menu *Sales Orders*).
+    \item Untuk \textit{invoice} baru, isi \textbf{Sales Order}, \textbf{Customer}, \textbf{Invoice Date}, \textbf{Due Date} (Jatuh tempo), dan \textbf{Total Amount}.
+    \item Pastikan status awal adalah \textit{Unpaid} (Belum Dibayar).
+    \item Di kolom \textit{Action}, klik \textbf{Print PDF} (Ikon Printer Hijau) untuk mencetak dokumen tagihan fisik yang akan dikirim via kurir/email ke pelanggan.
+\end{enumerate}
+
+\subsection{2. Meneruskan Tagihan ke Buku Piutang (Post to AR)}
+\begin{enumerate}
+    \item Pada menu \textbf{Sales Invoices}, cari \textit{invoice} yang statusnya \textit{Unpaid}.
+    \item Klik tombol biru muda \textbf{Post to AR} (Ikon Dolar).
+    \item Sistem akan memindahkan tagihan tersebut ke daftar \textbf{Accounts Receivable} di modul Finance. Notifikasi sukses akan muncul. (Catatan: Jangan klik dua kali, sistem akan memblokir jika tagihan sudah diposting).
+\end{enumerate}
+
+\subsection{3. Mencatat Penerimaan Uang dari Pelanggan (Record Receipt)}
+Ini adalah langkah paling krusial ketika mutasi rekening koran menunjukkan pelanggan telah membayar.
+\begin{enumerate}
+    \item Buka menu \textbf{Accounts Receivable} di bawah grup \textit{Finance}.
+    \item Cari \textit{invoice} yang ingin dilunasi (Anda bisa melihat kolom \textit{Outstanding} untuk sisa hutang pelanggan).
+    \item Klik tombol hijau \textbf{Record Receipt} (Ikon Dompet). Tombol ini HANYA muncul jika masih ada sisa \textit{outstanding}.
+    \item Pada jendela \textit{Pop-up} yang muncul, isikan:
+    \begin{itemize}
+        \item \textbf{Jumlah Penerimaan (Amount):} Masukkan nominal yang ditransfer pelanggan.
+        \item \textbf{Tanggal Penerimaan:} Tanggal uang masuk ke rekening.
+        \item \textbf{Sumber Dana:} Pilih \textit{Bank} atau \textit{Kas} tunai.
+        \item \textbf{Catatan:} Opsional.
+    \end{itemize}
+    \item Klik Submit.
+    \item Sistem akan secara otomatis menjurnal transaksi ini, mengurangi *Outstanding*, dan mengubah status Piutang menjadi \textit{Paid} (jika lunas penuh) atau \textit{Partial} (jika baru bayar sebagian).
+\end{enumerate}
+
+\section{Penanganan Masalah (Edge Cases)}
+\begin{itemize}
+    \item \textbf{Pembayaran Parsial (Cicilan):} Jika pelanggan berhutang 10 juta, tapi baru transfer 3 juta, Anda tetap bisa memasukkan angka 3 juta di menu \textbf{Record Receipt}. Status akan menjadi \textit{Partial Payment}.
+\end{itemize}
