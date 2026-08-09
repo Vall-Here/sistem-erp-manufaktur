@@ -6,7 +6,7 @@ Harga di bawah adalah contoh struktur harga untuk kebutuhan promosi. Angka dapat
 
 | Paket    | Cocok Untuk                      | Fitur Utama                                                | Harga        |
 | -------- | -------------------------------- | ---------------------------------------------------------- | ------------ |
-| Business | Perusahaan manufaktur berkembang | Semua modul inti + Production + Assets + dashboard lengkap | Rp 5.000.000 |
+| Business | Perusahaan manufaktur berkembang | Semua modul inti + Production + Assets + dashboard lengkap | Rp 6.000.000 |
 
 ## Opsi Layanan Tambahan
 
